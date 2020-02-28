@@ -2,7 +2,7 @@
   "name": "manageplat",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "lovin",
+  "author": "wanghan",
   "private": true,
   "scripts": {
     "build": "node build/build.js",

@@ -13,6 +13,8 @@ import count from '../components/pages/count'
 import countLog from '../components/pages/countLog'
 import login from '../components/pages/login'
 import home from '../components/pages/home'
+import appManage from '../components/pages/appManage'
+import admin from '../components/pages/admin'
 
 Vue.use(Router);
 
@@ -22,6 +24,16 @@ export default new Router({
         path: '/home',
         name: 'home',
         component: home
+      },
+      {
+        path: '/appManage',
+        name: 'appManage',
+        component: appManage
+      },
+      {
+        path: '/admin',
+        name: 'admin',
+        component: admin
       },
       {
         path: '/example_1',
