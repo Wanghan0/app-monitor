@@ -10,7 +10,8 @@
       text-color="#fff"
       active-text-color="#ffd04b">
       <el-menu-item index="/home">首页</el-menu-item>
-      <el-menu-item index="3">APP指标数据管理</el-menu-item>
+      <el-menu-item index="/indexMonitor">APP指标监控</el-menu-item>
+      <el-menu-item index="/updateMonitor">APP升级监控</el-menu-item>
       <el-menu-item index="/appManage">应用管理</el-menu-item>
       <el-menu-item index="/admin">我的工作台</el-menu-item>
       <!--<el-submenu index="2">-->

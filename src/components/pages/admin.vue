@@ -2,18 +2,20 @@
 <template>
   <div class="main">
     <div
-      v-for="(item,index) in list"
+      v-for="(item,index) in appData"
       :key="index"
       class="cardBox"
       @mouseenter="hoverItem=index"
       @mouseleave="hoverItem=''">
-      <div class="tag">某个app</div>
+      <div class="tag">{{item.name}}</div>
       <div class="box-card">
               <span class="del" v-show="hoverItem===index">
                 <i class="el-icon-close" @click.stop="del(index,item)"></i>
               </span>
+
         <div class="card_content">
-          111
+          <img class="icon" :src="`../../../static/icon_dir/${item.icon}.png`">
+          <!--<div class="footer">移除</div>-->
         </div>
       </div>
     </div>
@@ -21,6 +23,7 @@
 </template>
 
 <script type="text/javascript">
+  import {appData} from '../../assets/data'
   export default {
     name: '',
     components: {
@@ -28,6 +31,7 @@
     },
     data() {
       return {
+        appData:appData,
         hoverItem:null,
         list:[
           {name:'新上架应用',value:72},
@@ -73,7 +77,7 @@
   .box-card {
     position: relative;
     height: 160px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
     border-radius: 5px;
   }
@@ -86,8 +90,9 @@
     cursor: pointer;
   }
   .card_content {
+    position: relative;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 50px;
     box-sizing: border-box;
     height: 100%;
     color: #4f4f4f;
@@ -121,5 +126,19 @@
   }
   .offLine .index_name {
     color: #70869c;
+  }
+  .icon{
+    width: 50px;
+    height: 50px;
+  }
+
+  .footer{
+    width: 100%;
+    height: 30px;
+    border-top: 1px solid #409EFF;
+    color: #409EFF;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
   }
 </style>

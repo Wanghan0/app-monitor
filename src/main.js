@@ -10,10 +10,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import store from '../src/store/index'
 
+import echarts from 'echarts'
+
 axios.defaults.withCredentials=true
 
 Vue.use(ElementUI)
 Vue.prototype.$ajax = axios;
+Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false
 
 
