@@ -1,10 +1,6 @@
 <!--created by wanghan-->
 <template>
   <div class="main">
-    <!--<div class="section">-->
-      <!---->
-      <!--<line-chart name="whtest" :trendData="trendData"></line-chart>-->
-    <!--</div>-->
     <div>
       当前应用
       <el-select v-model="curApp" value-key="name">
@@ -13,7 +9,13 @@
     </div>
     <el-card v-for="(item,index) in list" :key="index" class="box-card">
       <div slot="header" class="clearfix">
-        <span class="header">{{item.name}}</span>
+        <div class="header">
+          <span class="name">{{item.name}}</span>
+          <span class="value">
+            <em class="label">最新数据：</em>
+            <em class="last">{{item.value[item.value.length-1]}}</em>
+          </span>
+        </div>
       </div>
       <div>
         <line-chart :name="item.filed" :trendData="item.value"></line-chart>
@@ -35,7 +37,6 @@
       return {
         appData:appData,
         curApp:{},
-        trendData:[820, 932, 901, 934, 1290, 1330, 1320],
         list:[
           {name:'应用排名',filed:'rank',value:[]},
           {name:'昨日新增下载量',filed:'new_download_yes',value:[]},
@@ -78,11 +79,29 @@
   }
   .box-card{
     width:500px;
-    height: 320px;
+    height: 350px;
     display: inline-block;
     margin: 20px;
   }
   .section{
     width: 300px;
+  }
+  .name{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #303133;
+  }
+  .value{
+    float: right;
+  }
+  .value .label{
+    color: #999999;
+  }
+  .value .last{
+    color: #409EFF;
+    font-size: 32px;
+    /*font-weight: bold;*/
   }
 </style>

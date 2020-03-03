@@ -9,7 +9,7 @@
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="/home">首页</el-menu-item>
+      <!--<el-menu-item index="/home">首页</el-menu-item>-->
       <el-menu-item index="/indexMonitor">APP指标监控</el-menu-item>
       <el-menu-item index="/updateMonitor">APP升级监控</el-menu-item>
       <el-menu-item index="/appManage">应用管理</el-menu-item>
