@@ -11,7 +11,6 @@
 <script>
   import vheader from './components/header/header.vue'
   import menuDynamic from './components/menu/menuDynamic.vue'
-  import {permsBtnAll} from './api/permsData.js'    //所有已埋权限的元素（按钮）列表
   import {menuData} from './components/menu/staticMenuData.js' //静态菜单数据
   // import {userGetPerms} from './api/index.js'
   import loading from './components/pages/login'

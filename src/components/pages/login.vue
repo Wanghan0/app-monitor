@@ -2,9 +2,6 @@
 <template>
   <div class="box">
     <div class="main">
-      <div>
-        <!--<img src="../../../static/img/logo.png">-->
-      </div>
       <el-card class="box-card">
         <h2 class="login-title">APP智能监控平台</h2>
         <el-form :model="loginData" status-icon  ref="ruleForm" class="demo-ruleForm">

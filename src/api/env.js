@@ -13,7 +13,6 @@ if (process.env.NODE_ENV === 'development') { //本地开发环境
 
 } else if (process.env.NODE_ENV === 'production') { //测试或线上环境
 
-  baseUrl = 'http://172.31.217.31:3000/';
   // baseUrl = 'http://172.31.68.53:3000/';
 }
 
