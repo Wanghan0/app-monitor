@@ -1,8 +1,13 @@
 <!--created by wanghan-->
 <template>
   <div class="main">
-    <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-      <el-tab-pane label="全部" name="all"></el-tab-pane>
+    <el-tabs v-model="activeName" type="card">
+      <div class="top-btn">
+        <el-button size="mini">昨日</el-button>
+        <el-button size="mini" type="primary">今日</el-button>
+        <el-date-picker v-model="date" size="mini" type="date" placeholder="选择日期"></el-date-picker>
+      </div>
+      <el-tab-pane label="类别" name="all"></el-tab-pane>
       <el-tab-pane v-for="(item,index) in typeList" :label="item" :name="item" :key="index"></el-tab-pane>
     </el-tabs>
     <contentTable
@@ -38,7 +43,8 @@
     data() {
       return {
         activeName:'all',
-        typeList:['华为','小米','VIVO','OPPO','豌豆荚','应用宝','百度'],
+        date:'2020-02-27',
+        typeList:['软件下载榜','软件评分榜'],
         searchParam:{
           page:1,
           pageSize:15
@@ -56,13 +62,25 @@
         ],
         constants:[
           {name:'应用1',sort:'排名1',type:'类别1',down:'昨日新增下载量1',count:'评分统计1',updateTime:'最后更新1',cpName:'公司名称1'}
-        ]
+        ],
+        constantsSource:[],
+        constantsSortByScore:[],
+        constantsSortByDownload:[],
       }
     },
     computed: {
 
     },
     watch:{
+      activeName(val){
+        console.log('activeName', val);
+        if(val==='软件下载榜'){
+          this.constants=[...this.constantsSortByDownload];
+        }else if(val==='软件评分榜'){
+          this.constants=[...this.constantsSortByScore];
+        }
+
+      }
     },
     created() {
       this.init()
@@ -83,12 +101,15 @@
             "after_update": item.after_update[item.after_update.length-1],
             "icon": item.icon,
           }
-
-        })
+        });
+        this.constantsSource=[...this.constants];
+        this.constantsSortByScore=[...this.constants].sort((a,b)=>{
+          return Number(b['score'])-Number(a['score'])
+        });
+        this.constantsSortByDownload=[...this.constants].sort((a,b)=>{
+          return Number(b['new_download_yes'].replace(/,/g,''))-Number(a['new_download_yes'].replace(/,/g,''))
+        });
       },
-      handleClick(tab, event) {
-        console.log(tab, event);
-      }
     }
   }
 
@@ -103,5 +124,10 @@
   .icon{
     width: 40px;
     height: 40px;
+  }
+  .top-btn{
+    position: absolute;
+    top:-50px;
+    left: 350px;
   }
 </style>

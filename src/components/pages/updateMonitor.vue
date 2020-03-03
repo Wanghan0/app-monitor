@@ -2,9 +2,28 @@
 <template>
   <div class="main">
     <div>
-
-
+      当前应用
+      <el-select v-model="curApp" value-key="name">
+        <el-option label="微信" value="item"></el-option>
+      </el-select>
+      <el-date-picker v-model="date" size="mini" type="date" placeholder="选择日期"></el-date-picker>
     </div>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>更新前</span>
+      </div>
+      <div>
+
+      </div>
+    </el-card>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>更新后</span>
+      </div>
+      <div>
+
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -16,6 +35,8 @@
     },
     data() {
       return {
+        date:'2020-02-27',
+        curApp:'微信'
       }
     },
     computed: {
@@ -31,5 +52,14 @@
 </script>
 
 <style scoped>
-
+  .main{
+    padding: 20px 50px;
+    text-align: center;
+  }
+  .box-card{
+    width:400px;
+    height: 550px;
+    display: inline-block;
+    margin: 20px;
+  }
 </style>

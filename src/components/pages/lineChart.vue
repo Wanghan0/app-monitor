@@ -15,7 +15,7 @@
       return {
         trendChart:null,
         option:{
-          grid:{top:'5%'},
+          grid:{top:'5%',left:'15%',right:'15%'},
           xAxis: {
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],

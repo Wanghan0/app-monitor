@@ -1,12 +1,8 @@
 <template>
   <div id="app">
     <!--<loading></loading>-->
-    <vheader></vheader>
+    <vheader v-show="$route.path!=='/login'"></vheader>
     <div class="main clearfix">
-      <!--<div class="pub_menu">-->
-        <!--<h3 class="pub_menu_title">晚饭报销平台</h3>-->
-        <!--<menu-dynamic v-if="isShowMenu" :menuData="menuData"></menu-dynamic>-->
-      <!--</div>-->
       <router-view class="content"></router-view>
     </div>
   </div>

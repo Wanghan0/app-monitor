@@ -16,6 +16,7 @@
       <el-menu-item index="/updateMonitor">APP升级监控</el-menu-item>
       <el-menu-item index="/appManage">应用管理</el-menu-item>
       <el-menu-item index="/admin">我的工作台</el-menu-item>
+      <el-menu-item style="float: right" index="/login">退出登录</el-menu-item>
     </el-menu>
   </div>
 </template>

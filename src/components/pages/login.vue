@@ -3,10 +3,10 @@
   <div class="box">
     <div class="main">
       <div>
-        <img src="../../../static/img/logo.png">
+        <!--<img src="../../../static/img/logo.png">-->
       </div>
       <el-card class="box-card">
-        <h2 class="login-title">DINNER CENTER</h2>
+        <h2 class="login-title">APP智能监控平台</h2>
         <el-form :model="loginData" status-icon  ref="ruleForm" class="demo-ruleForm">
           <el-form-item prop="username" required>
             <el-input prefix-icon="el-icon-user" size="medium " type="text" v-model="loginData.username" placeholder="账号">
@@ -18,7 +18,7 @@
           </el-form-item>
           <div class="center">
             <el-button size="medium" type="primary" @click="login">登录</el-button><br>
-            <!--<el-button style="margin-top: 10px" size="medium" @click="logon">注册</el-button>-->
+            <el-button style="margin-top: 10px" size="medium" @click="logon">注册</el-button>
           </div>
         </el-form>
 
@@ -51,19 +51,21 @@
     methods: {
       login(){
         this.$refs.ruleForm.validate().then(()=>{
-          login(this.loginData).then(res => {
-            this.$store.commit('curUserChange',this.loginData.username)
-            // this.$message({type:'success',message:'删除成功！'})
-          }).catch(err =>{
-
-          });
+          this.$router.push('/admin')
+          // login(this.loginData).then(res => {
+          //   this.$store.commit('curUserChange',this.loginData.username)
+          //   // this.$message({type:'success',message:'删除成功！'})
+          // }).catch(err =>{
+          //
+          // });
         })
       },
       logon(){
         this.$refs.ruleForm.validate().then(()=>{
-          addUser({name:this.loginData.username,password: this.loginData.password}).then(res => {
-            this.$message({type:'success',message:'注册成功！'})
-          }).catch(err =>{});
+          this.$router.push('/admin')
+          // addUser({name:this.loginData.username,password: this.loginData.password}).then(res => {
+          //   this.$message({type:'success',message:'注册成功！'})
+          // }).catch(err =>{});
         })
       },
     }
@@ -81,7 +83,7 @@
   .main{
     width: 410px;
     height: 390px;
-    margin:  100px auto;
+    margin:  30px auto;
     padding: 20px;
     position: relative;
   }

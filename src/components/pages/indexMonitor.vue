@@ -6,6 +6,7 @@
       <el-select v-model="curApp" value-key="name">
         <el-option v-for="(item,index) in appData" :label="item.name" :value="item" :key="index"></el-option>
       </el-select>
+      <el-date-picker v-model="date" size="mini" type="date" placeholder="选择日期"></el-date-picker>
     </div>
     <el-card v-for="(item,index) in list" :key="index" class="box-card">
       <div slot="header" class="clearfix">
@@ -35,6 +36,7 @@
     },
     data() {
       return {
+        date:'2020-02-27',
         appData:appData,
         curApp:{},
         list:[

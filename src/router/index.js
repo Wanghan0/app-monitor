@@ -5,6 +5,7 @@ import appManage from '../components/pages/appManage'
 import admin from '../components/pages/admin'
 import indexMonitor from '../components/pages/indexMonitor'
 import updateMonitor from '../components/pages/updateMonitor'
+import login from '../components/pages/login'
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
         path: '/updateMonitor',
         name: 'updateMonitor',
         component: updateMonitor
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: login
       },
 
     ]
