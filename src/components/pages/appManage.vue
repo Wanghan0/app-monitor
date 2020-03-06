@@ -18,8 +18,11 @@
       :pageParams="searchParam"
       :noOperat="false">
       <template slot="tdCustom" slot-scope="{item,one,index}">
-        <span>
+        <span v-if="one.value==='icon'">
           <img class="icon" :src="`../../../static/icon_dir/${item.icon}.png`">
+        </span>
+        <span v-else-if="one.value==='rank'">
+          {{index+1}}
         </span>
       </template>
       <template slot="tdOperate" slot-scope="{item}">
@@ -54,7 +57,7 @@
         titles:[
           {name:'应用',value:'name'},
           {name:'图标',value:'icon',customTd:true},
-          {name:'排名',value:'rank'},
+          {name:'排名',value:'rank',customTd:true},
           {name:'昨日新增下载量',value:'new_download_yes'},
           {name:'评分统计',value:'score'},
           {name:'最后更新',value:'last_update'},
@@ -92,7 +95,7 @@
           return {
             "new_download_yes": item.new_download_yes[item.new_download_yes.length-1],
             "name": item.name,
-            "company": item.name,
+            "company": item.company,
             "rank": item.rank[item.rank.length-1],
             "last_update": item.last_update[item.last_update.length-1],
             "before_update": item.before_update[item.before_update.length-1],

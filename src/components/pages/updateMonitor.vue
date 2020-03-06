@@ -4,7 +4,7 @@
     <div>
       当前应用
       <el-select v-model="curApp" value-key="name">
-        <el-option label="微信" value="item"></el-option>
+        <el-option label="bilibili" value="item"></el-option>
       </el-select>
       <el-date-picker v-model="date" size="mini" type="date" placeholder="选择日期"></el-date-picker>
     </div>
@@ -13,7 +13,7 @@
         <span>更新前</span>
       </div>
       <div>
-
+        <img src="../../../static/img/before.jpg">
       </div>
     </el-card>
     <el-card class="box-card">
@@ -21,7 +21,7 @@
         <span>更新后</span>
       </div>
       <div>
-
+        <img src="../../../static/img/after.jpg">
       </div>
     </el-card>
   </div>
@@ -36,7 +36,7 @@
     data() {
       return {
         date:'2020-02-27',
-        curApp:'微信'
+        curApp:'bilibili'
       }
     },
     computed: {
@@ -57,8 +57,8 @@
     text-align: center;
   }
   .box-card{
-    width:400px;
-    height: 550px;
+    min-width:400px;
+    min-height: 550px;
     display: inline-block;
     margin: 20px;
   }
