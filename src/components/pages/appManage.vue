@@ -6,6 +6,7 @@
         <el-button size="mini">昨日</el-button>
         <el-button size="mini" type="primary">今日</el-button>
         <el-date-picker v-model="date" size="mini" type="date" placeholder="选择日期"></el-date-picker>
+        <el-button size="mini" type="primary">搜索</el-button>
       </div>
       <el-tab-pane label="类别" name="all"></el-tab-pane>
       <el-tab-pane v-for="(item,index) in typeList" :label="item" :name="item" :key="index"></el-tab-pane>
@@ -26,22 +27,37 @@
         </span>
       </template>
       <template slot="tdOperate" slot-scope="{item}">
-        <el-button icon="el-icon-plus" type="primary" size="mini">关注应用</el-button>
+        <el-button icon="el-icon-plus" type="primary" size="mini" @click="follow">关注应用</el-button>
         <el-button icon="el-icon-star-off" type="primary" size="mini">指标详情</el-button>
         <el-button icon="el-icon-refresh" type="primary" size="mini">更新详情</el-button>
-        <!--<button type="button" class="btn btn-intab" @click="">关注应用</button>-->
+        <el-button icon="el-icon-edit" type="primary" size="mini" @click="config(item)">配置信息</el-button>
       </template>
     </contentTable>
+    <!--这个是弹框组件，详情可查阅element组件文档https://element.eleme.cn/#/zh-CN/component/dialog-->
+    <el-dialog :visible.sync="showConfig" title="信息配置" width="820px" :close-on-click-modal="false">
+      <!--此处弹框里放了一个表单，这个表单是我写的组件，使用时需要引入，你也可以放其他东西-->
+      <edit-form
+        ref="editForm"
+        v-if="showConfig"
+        :fields="editFields"
+        :editData="editData"
+        @save="save"
+        label-width="120px"
+        @close="showConfig=false">
+      </edit-form>
+    </el-dialog>
   </div>
 </template>
 
 <script type="text/javascript">
-  import contentTable from "../common/contentTable";
-  import {appData} from '../../assets/data'
+  import contentTable from "../common/contentTable";//引入表格组件
+  import {appData} from '../../assets/data'//引入表格数据
+  import editForm from "../common/editForm";//引入表单组件
   export default {
     name: '',
     components: {
-      contentTable
+      contentTable,
+      editForm
     },
     data() {
       return {
@@ -69,12 +85,21 @@
         constantsSource:[],
         constantsSortByScore:[],
         constantsSortByDownload:[],
+        showConfig:false,//控制配置弹框是否显示
+        editData:null,//配置弹框表单的数据对象
+        editFields:{//配置弹框表单的配置项
+          name:{type: 'input', label: '应用',required:true},
+          icon:{type: 'input', label: '图标'},
+          score:{type: 'number', label: '评分统计',required:true},
+          company:{type: 'input', label: '公司名称',required:true},
+        },
       }
     },
     computed: {
 
     },
     watch:{
+      //切换tab
       activeName(val){
         console.log('activeName', val);
         if(val==='软件下载榜'){
@@ -85,10 +110,32 @@
 
       }
     },
-    created() {
+    created() {//组件加载完成的生命周期，可以做一些初始化工作
       this.init()
     },
     methods: {
+      //关注应用，这里是一个简单弹框，仅作提示使用
+      follow(){
+        //这个是提示框组件，详情可查阅element组件文档https://element.eleme.cn/#/zh-CN/component/message-box
+        this.$confirm('确定关注该应用吗？','提示').then(()=>{
+          //点击确定后做一些逻辑处理
+        }).catch(()=>{
+          //点击取消后做一些逻辑处理
+        })
+      },
+      //打开配置弹框,这里的弹框是一个表单，常见于编辑表格某行的内容
+      config(item){
+        this.showConfig=true; //配置弹框设置为显示，此为显示弹框的必须步骤
+        //此处可做一些逻辑处理，例如下面
+        this.editData={...item}; //给配置表单对象赋值
+        this.editData.type='edit'; //状态设置为编辑
+      },
+      //保存配置信息
+      save(){
+        //此处可做一些逻辑处理
+        this.showConfig=true;//关闭配置弹框
+      },
+      //处理表格数据
       init(){
         let data=appData;
         this.constants=data.map(item=>{

@@ -151,7 +151,7 @@
       },
       //field对象转化为表单所需
       init() {
-        if (this.editData._id || this.editData._id === 0) {
+        if (this.editData.type==='edit') {
           this.formDataNew = {...this.editData}
         } else {
           Object.keys(this.fields).forEach(key => {
