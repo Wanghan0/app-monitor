@@ -32,7 +32,6 @@
         <el-button icon="el-icon-star-off" type="text" size="mini">指标详情</el-button>
         <el-button icon="el-icon-refresh" type="text" size="mini">更新详情</el-button>
         <el-button icon="el-icon-edit" type="text" size="mini" @click="config(item)">配置信息</el-button>
-        <el-button icon="el-icon-setting" type="text" size="mini" @click="setting(item)">显示设置</el-button>
       </template>
     </contentTable>
     <!--这个是弹框组件，详情可查阅element组件文档https://element.eleme.cn/#/zh-CN/component/dialog-->
@@ -47,20 +46,6 @@
         label-width="120px"
         @close="showConfig=false">
       </edit-form>
-    </el-dialog>
-    <el-dialog :visible.sync="showSetting" title="信息配置" width="400px" :close-on-click-modal="false">
-      <el-checkbox-group v-model="checkList" style="margin-top: 20px">
-        <el-row>
-          <el-col :span="12" v-for="one in indexs" style="text-align: initial;padding-left: 50px">
-            <el-checkbox :label="one" :key="one">{{one}}</el-checkbox>
-          </el-col>
-        </el-row>
-      </el-checkbox-group>
-      <div style="margin-top: 20px">
-        <el-button type="primary" size="small">保存</el-button>
-        <el-button size="small">取消</el-button>
-      </div>
-      <p class="tip">请至少选择四个指标</p>
     </el-dialog>
   </div>
 </template>
@@ -77,7 +62,6 @@
     },
     data() {
       return {
-        checkList:[],
         activeName:'all',
         date:'2020-02-27',
         typeList:['软件下载榜','软件评分榜'],
@@ -103,7 +87,6 @@
         constantsSortByScore:[],
         constantsSortByDownload:[],
         showConfig:false,//控制配置弹框是否显示
-        showSetting:false,
         editData:null,//配置弹框表单的数据对象
         editFields:{//配置弹框表单的配置项
           name:{type: 'input', label: '应用',required:true},
@@ -111,7 +94,6 @@
           score:{type: 'number', label: '评分统计',required:true},
           company:{type: 'input', label: '公司名称',required:true},
         },
-        indexs:['应用排名','昨日新增下载量','评分','评论数','类别','上架时间','更新时间']
       }
     },
     computed: {
@@ -133,10 +115,6 @@
       this.init()
     },
     methods: {
-      //显示设置
-      setting(){
-        this.showSetting=true;
-      },
       //关注应用，这里是一个简单弹框，仅作提示使用
       follow(){
         //这个是提示框组件，详情可查阅element组件文档https://element.eleme.cn/#/zh-CN/component/message-box
@@ -202,12 +180,5 @@
     position: absolute;
     top:-50px;
     left: 350px;
-  }
-  .tip{
-    color: #aaaaaa;
-    text-align: center;
-    font-size: 12px;
-    position: relative;
-    top: 10px;
   }
 </style>

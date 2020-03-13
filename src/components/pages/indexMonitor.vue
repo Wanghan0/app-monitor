@@ -7,6 +7,8 @@
         <el-option v-for="(item,index) in appData" :label="item.name" :value="item" :key="index"></el-option>
       </el-select>
       <el-date-picker v-model="date" size="mini" type="date" placeholder="选择日期"></el-date-picker>
+
+      <el-button icon="el-icon-setting" type="primary" size="mini" @click="setting(item)">显示设置</el-button>
     </div>
     <el-card v-for="(item,index) in list" :key="index" class="box-card">
       <div slot="header" class="clearfix">
@@ -23,6 +25,20 @@
       </div>
       <!--<div class="value">{{item.value}}</div>-->
     </el-card>
+    <el-dialog :visible.sync="showSetting" title="信息配置" width="400px" :close-on-click-modal="false">
+      <el-checkbox-group v-model="checkList" style="margin-top: 20px">
+        <el-row>
+          <el-col :span="12" v-for="one in indexs" :key="one" style="text-align: initial;padding-left: 50px">
+            <el-checkbox :label="one">{{one}}</el-checkbox>
+          </el-col>
+        </el-row>
+      </el-checkbox-group>
+      <div style="margin-top: 20px">
+        <el-button type="primary" size="small">保存</el-button>
+        <el-button size="small">取消</el-button>
+      </div>
+      <p class="tip">请至少选择四个指标</p>
+    </el-dialog>
   </div>
 </template>
 
@@ -36,6 +52,9 @@
     },
     data() {
       return {
+        checkList:[],
+        indexs:['应用排名','昨日新增下载量','评分','评论数','类别','上架时间','更新时间'],
+        showSetting:false,
         date:'2020-02-27',
         appData:appData,
         curApp:{},
@@ -68,6 +87,10 @@
       this.curApp=appData[0];
     },
     methods: {
+      //显示设置
+      setting(){
+        this.showSetting=true;
+      },
     }
   }
 
@@ -105,5 +128,12 @@
     color: #409EFF;
     font-size: 32px;
     /*font-weight: bold;*/
+  }
+  .tip{
+    color: #aaaaaa;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    top: 10px;
   }
 </style>
