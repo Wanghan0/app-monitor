@@ -9,8 +9,8 @@
       @mouseleave="hoverItem=''">
       <div class="tag">{{item.name}}</div>
       <div class="box-card">
-              <span class="del" v-show="hoverItem===index">
-                <i class="el-icon-close" @click.stop="del(index,item)"></i>
+              <span class="del" v-show="hoverItem===index" @click="del(index,item)">
+                <i class="el-icon-close"></i>
               </span>
 
         <div class="card_content">
@@ -19,6 +19,16 @@
         </div>
       </div>
     </div>
+    <!--<el-card class="box-card cardBox" v-for="(item,index) in appData" :key="index">-->
+      <!--<div slot="header" class="clearfix">-->
+        <!--<span style="float: left; padding: 3px 6px;font-size: 14px">{{item.name}}</span>-->
+        <!--<el-button style="float: right; padding: 3px 6px;font-size: 12px" type="text" @click="del(index,item)">移除</el-button>-->
+      <!--</div>-->
+      <!--<div class="card_content">-->
+        <!--<img class="icon" :src="`../../../static/icon_dir/${item.icon}.png`">-->
+        <!--&lt;!&ndash;<div class="footer">移除</div>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</el-card>-->
   </div>
 </template>
 
@@ -49,7 +59,13 @@
     created() {
     },
     methods: {
-      del(){}
+      del(){
+        this.$confirm('确定移除该应用吗？','提示').then(()=>{
+          //点击确定后做一些逻辑处理
+        }).catch(()=>{
+          //点击取消后做一些逻辑处理
+        })
+      }
 
     }
   }
@@ -67,11 +83,11 @@
     transition: all 1s;
   }
   .cardBox {
+    margin: 20px;
     width: 25%;
     display: inline-block;
-    padding: 12px;
+    /*padding: 12px;*/
     box-sizing: border-box;
-    cursor: move;
     vertical-align: bottom;
   }
   .box-card {
@@ -88,6 +104,7 @@
     font-size: 20px;
     color: #999;
     cursor: pointer;
+    z-index: 9999;
   }
   .card_content {
     position: relative;
@@ -99,8 +116,8 @@
   }
   .tag {
     position: absolute;
-    top: 5px;
-    left: 2px;
+    top: -4px;
+    left: -7px;
     z-index: 1;
     padding-right: 10px;
     color: #000;
@@ -140,5 +157,8 @@
     cursor: pointer;
     position: absolute;
     bottom: 0;
+  }
+  .el-card__header{
+    padding: 8px 2px !important;
   }
 </style>
